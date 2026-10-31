@@ -49,10 +49,8 @@ jobs:
           cmake --build build --parallel
 
       - name: Execute Test Suite
-        env:
-          QT_QPA_PLATFORM: offscreen
         run: |
-          ctest --test-dir build --output-on-failure
+          xvfb-run -a -s "-screen 0 2560x2560x24" ctest --test-dir build --output-on-failure
 
   build-windows:
     name: Windows Package (x64)

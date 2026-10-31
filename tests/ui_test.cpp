@@ -31,8 +31,9 @@
 #include <QPainter>
 #include <chrono>
 int main(int argc, char **argv) {
-  // Use offscreen platform for deterministic headless test execution
-  qputenv("QT_QPA_PLATFORM", "offscreen");
+  if (!qEnvironmentVariableIsSet("QT_QPA_PLATFORM") && !qEnvironmentVariableIsSet("DISPLAY")) {
+    qputenv("QT_QPA_PLATFORM", "offscreen");
+  }
   Q_INIT_RESOURCE(kreart);
   QApplication app(argc, argv);
   int failures = 0;
