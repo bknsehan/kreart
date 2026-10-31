@@ -24,3 +24,7 @@ out/
 test_*.kra
 test_*.wal
 test_*.mp4
+
+# Logs
+*.log
+aqtinstall.log

@@ -21,8 +21,8 @@ endif()
 
 if(ANDROID)
     add_custom_target(kreart_apk
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/android-build/libs/arm64-v8a"
-        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:kreart>" "${CMAKE_CURRENT_BINARY_DIR}/android-build/libs/arm64-v8a/libkreart_arm64-v8a.so"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/android-build/libs/${CMAKE_ANDROID_ARCH_ABI}"
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:kreart>" "${CMAKE_CURRENT_BINARY_DIR}/android-build/libs/${CMAKE_ANDROID_ARCH_ABI}/libkreart_${CMAKE_ANDROID_ARCH_ABI}.so"
         COMMAND "${QT_HOST_PATH}/bin/androiddeployqt"
             --input "${CMAKE_CURRENT_BINARY_DIR}/android-kreart-deployment-settings.json"
             --output "${CMAKE_CURRENT_BINARY_DIR}/android-build"
