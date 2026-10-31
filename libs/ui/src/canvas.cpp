@@ -905,7 +905,6 @@ void Canvas::update_move_tool_cursor(double wx, double wy) {
 
 void Canvas::paintEvent(QPaintEvent *event) {
   if (!context() || !context()->isValid() || !gl_enabled_) {
-    paint_cpu();
     return;
   }
   QOpenGLWidget::paintEvent(event);
@@ -955,6 +954,9 @@ void Canvas::paint_cpu() {
 }
 
 void Canvas::paintGL() {
+  if (!context() || !context()->isValid() || !gl_enabled_) {
+    return;
+  }
   update_transform(width(), height());
 
   render::FloatingSelectionRenderInfo fs_info;
