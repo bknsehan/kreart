@@ -32,7 +32,7 @@ Kreart is a native, ultra-responsive digital painting studio engineered specific
 
 - **Compiler**: Modern C++20 compliant compiler (GCC 12+, Clang 16+, or MSVC 2022)
 - **CMake**: Version 3.22 or newer
-- **Qt 6**: Version 6.5+ (`Core`, `Gui`, `Widgets`, `OpenGLWidgets`, `Svg`)
+- **Qt 6**: Version 6.2+ (`Core`, `Gui`, `Widgets`, `OpenGLWidgets`, `Svg`)
 - **System Libraries**: `libpng`, `libxml2`, `libzip`, `zlib`
 
 ### Linux
@@ -88,7 +88,7 @@ cmake --build build-android --target kreart_make_apk
 ## Development & Architecture Transparency
 
 > **Development & Architecture**:
-> Kreart is designed, architected, and maintained by @bknsehan, developed with AI pair-programming assistance. Every component is backed by automated end-to-end regression suites and real-time performance benchmarks.
+> Kreart is designed, architected, and maintained by me, developed with AI pair-programming assistance. Every component is backed by automated end-to-end regression suites and real-time performance benchmarks.
 
 ---
 

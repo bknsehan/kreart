@@ -14,7 +14,7 @@ include(GNUInstallDirs)
 include(CTest)
 
 # Dependencies
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Gui Widgets OpenGLWidgets Svg)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Widgets OpenGLWidgets Svg)
 if(ANDROID)
     include(FetchContent)
 

@@ -57,6 +57,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Set up MSVC Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
 
@@ -64,9 +69,8 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.6.2'
-          arch: 'win64_msvc2022_64'
-          modules: 'qtsvg'
-
+          arch: 'win64_msvc2019_64'
+          setup-python: false
       - name: Install dependencies via vcpkg
         run: |
           vcpkg install libpng:x64-windows libxml2:x64-windows libzip:x64-windows zlib:x64-windows
@@ -76,6 +80,7 @@ jobs:
         run: |
           cmake -B build -G Ninja `
             -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
             -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" `
             -DVCPKG_TARGET_TRIPLET="x64-windows" `
             -DBUILD_TESTING=OFF
