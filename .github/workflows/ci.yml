@@ -35,6 +35,7 @@ jobs:
             zlib1g-dev \
             ffmpeg \
             xvfb \
+            gdb \
             libgl1-mesa-dri \
             libxkbcommon-x11-0
 
@@ -52,7 +53,7 @@ jobs:
         env:
           QT_QPA_PLATFORM: offscreen
         run: |
-          ctest --test-dir build --output-on-failure
+          ctest --test-dir build --output-on-failure || (gdb -batch -ex "run" -ex "bt" ./build/tests/kreart-ui-test)
 
   build-windows:
     name: Windows Package (x64)
