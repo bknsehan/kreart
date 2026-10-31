@@ -69,6 +69,10 @@ Canvas::~Canvas() {
 }
 
 void Canvas::initializeGL() {
+  if (!context() || !context()->isValid()) {
+    gl_enabled_ = false;
+    return;
+  }
   initializeOpenGLFunctions();
   gl_renderer_.shutdown();
   gl_renderer_.init();

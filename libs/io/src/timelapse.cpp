@@ -127,6 +127,8 @@ bool TimelapseRecorder::init(const std::string &session_uuid, int max_dimension)
 
   session_uuid_ = session_uuid;
   session_dir_ = get_session_dir_for(session_uuid_);
+  std::error_code ec;
+  std::filesystem::create_directories(session_dir_, ec);
   frame_count_.store(0, std::memory_order_relaxed);
   last_capture_ms_ = 0;
 
