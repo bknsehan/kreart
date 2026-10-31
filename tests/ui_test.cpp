@@ -605,7 +605,7 @@ int main(int argc, char **argv) {
     });
     if (card->preview_button()) {
       QTimer::singleShot(50, []() {
-        for (QWidget *w : QApplication::topLevelWidgets()) {
+        for (QWidget *w : QApplication::allWidgets()) {
           if (auto *d = qobject_cast<QDialog *>(w)) {
             d->accept();
           }
@@ -719,7 +719,7 @@ int main(int argc, char **argv) {
         check(row->testAttribute(Qt::WA_StyledBackground), "LayerRowWidget has Qt::WA_StyledBackground enabled");
         if (row->preview_button()) {
           QTimer::singleShot(50, []() {
-            for (QWidget *w : QApplication::topLevelWidgets()) {
+            for (QWidget *w : QApplication::allWidgets()) {
               if (auto *d = qobject_cast<QDialog *>(w)) {
                 d->accept();
               }
