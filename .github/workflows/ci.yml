@@ -34,7 +34,9 @@ jobs:
             libzip-dev \
             zlib1g-dev \
             ffmpeg \
-            xvfb
+            xvfb \
+            libgl1-mesa-dri \
+            libxkbcommon-x11-0
 
       - name: Configure CMake
         run: |
@@ -47,8 +49,10 @@ jobs:
           cmake --build build --parallel
 
       - name: Execute Test Suite
+        env:
+          QT_QPA_PLATFORM: offscreen
         run: |
-          xvfb-run -a ctest --test-dir build --output-on-failure
+          ctest --test-dir build --output-on-failure
 
   build-windows:
     name: Windows Package (x64)

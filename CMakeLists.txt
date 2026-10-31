@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project(kreart VERSION 0.2.0 LANGUAGES C CXX)
 add_compile_definitions(KREART_VERSION_STRING="01.000.20261031")
+add_compile_definitions(_USE_MATH_DEFINES)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
