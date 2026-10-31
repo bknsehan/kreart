@@ -145,6 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
     stroke_preview_cache_.clear();
     rebuild_preset_dock();
   });
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
   if (auto *hints = QGuiApplication::styleHints()) {
     connect(hints, &QStyleHints::colorSchemeChanged, this, [this](Qt::ColorScheme) {
       if (AppSettings::instance().theme() == ThemeMode::SYSTEM) {
@@ -153,6 +154,7 @@ MainWindow::MainWindow(QWidget *parent)
       }
     });
   }
+#endif
 }
 
 void MainWindow::rebuild_recent_menu() {

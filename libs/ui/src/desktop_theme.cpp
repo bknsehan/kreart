@@ -25,7 +25,13 @@ bool resolve_dark() {
   if (hints == nullptr) {
     return true;
   }
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
   return hints->colorScheme() != Qt::ColorScheme::Light;
+#else
+  const auto text_lightness = qApp ? qApp->palette().windowText().color().lightness() : 255;
+  const auto bg_lightness = qApp ? qApp->palette().window().color().lightness() : 0;
+  return text_lightness > bg_lightness;
+#endif
 }
 
 } // namespace
