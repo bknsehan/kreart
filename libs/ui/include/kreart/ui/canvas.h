@@ -240,6 +240,7 @@ protected:
   void resizeGL(int w, int h) override;
   void paintGL() override;
   void paintEvent(QPaintEvent *event) override;
+  void resizeEvent(QResizeEvent *event) override;
   bool event(QEvent *event) override;
   void tabletEvent(QTabletEvent *event) override;
   void mousePressEvent(QMouseEvent *event) override;

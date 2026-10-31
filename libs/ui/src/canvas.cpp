@@ -83,6 +83,14 @@ void Canvas::resizeGL(int w, int h) {
   update_transform(w, h);
 }
 
+void Canvas::resizeEvent(QResizeEvent *event) {
+  if (!context() || !context()->isValid() || !gl_enabled_) {
+    update_transform(width(), height());
+    return;
+  }
+  QOpenGLWidget::resizeEvent(event);
+}
+
 void Canvas::refresh() {
   if (last_doc_width_ != document_.width() || last_doc_height_ != document_.height()) {
     last_doc_width_ = document_.width();

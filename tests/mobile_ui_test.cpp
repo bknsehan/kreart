@@ -84,9 +84,7 @@ QTouchEvent make_touch(QEvent::Type type, const QPointingDevice *device,
 } // namespace
 
 int main(int argc, char **argv) {
-  if (!qEnvironmentVariableIsSet("QT_QPA_PLATFORM") && !qEnvironmentVariableIsSet("DISPLAY")) {
-    qputenv("QT_QPA_PLATFORM", "offscreen");
-  }
+  qputenv("QT_QPA_PLATFORM", "offscreen");
   Q_INIT_RESOURCE(kreart);
   QApplication app(argc, argv);
 
