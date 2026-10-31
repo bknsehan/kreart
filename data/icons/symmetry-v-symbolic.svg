@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+  <!-- Central vertical reflection axis -->
+  <line x1="8" y1="1" x2="8" y2="15" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2,2"/>
+  <!-- Left mirrored wing/brush shape -->
+  <path fill="currentColor" d="M5.5 3.5C3 3.5 1.5 5.5 1.5 8s1.5 4.5 4 4.5V3.5z"/>
+  <!-- Right mirrored wing/brush shape -->
+  <path fill="currentColor" d="M10.5 3.5C13 3.5 14.5 5.5 14.5 8s-1.5 4.5-4 4.5V3.5z"/>
+</svg>

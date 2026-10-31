@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Kreart
+GenericName=Digital Painting
+Comment=Fast, native painting application with a Krita-compatible core
+Exec=kreart %U
+Icon=io.github.kreart.Kreart
+Terminal=false
+Categories=Graphics;2DGraphics;RasterGraphics;
+MimeType=application/x-krita;image/openraster;image/png;
+StartupNotify=true

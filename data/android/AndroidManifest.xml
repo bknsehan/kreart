@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="io.github.kreart"
+          android:versionCode="1"
+          android:versionName="0.2.0">
+
+    <supports-screens android:anyDensity="true"
+                      android:largeScreens="true"
+                      android:normalScreens="true"
+                      android:smallScreens="true"/>
+
+    <uses-feature android:glEsVersion="0x00030000" android:required="true"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="true"/>
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false"/>
+
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication"
+                 android:label="Kreart"
+                 android:allowBackup="true"
+                 android:fullBackupOnly="false"
+                 android:hardwareAccelerated="true"
+                 android:requestLegacyExternalStorage="true"
+                 android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <activity android:name="org.qtproject.qt.android.bindings.QtActivity"
+                  android:label="Kreart"
+                  android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
+                  android:exported="true"
+                  android:launchMode="singleTop"
+                  android:windowSoftInputMode="adjustResize"
+                  android:screenOrientation="fullSensor"
+                  android:resizeableActivity="true"
+                  android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/x-krita"/>
+                <data android:mimeType="image/png"/>
+            </intent-filter>
+
+            <meta-data android:name="android.max_aspect" android:value="2.4"/>
+            <meta-data android:name="android.app.lib_name" android:value="kreart"/>
+            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/>
+        </activity>
+    </application>
+</manifest>

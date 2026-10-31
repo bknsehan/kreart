@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    name: Linux Build & Test (x86_64)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake \
+            ninja-build \
+            pkg-config \
+            qt6-base-dev \
+            qt6-base-dev-tools \
+            libqt6svg6-dev \
+            libqt6opengl6-dev \
+            libpng-dev \
+            libxml2-dev \
+            libzip-dev \
+            zlib1g-dev
+
+      - name: Configure CMake
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_TESTING=ON
+
+      - name: Build Kreart
+        run: |
+          cmake --build build --parallel
+
+      - name: Execute Test Suite
+        run: |
+          ctest --test-dir build --output-on-failure
+
+  build-windows:
+    name: Windows Package (x64)
+    runs-on: windows-2022
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up MSVC Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt 6.6
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.6.2'
+          arch: 'win64_msvc2022_64'
+          modules: 'qtsvg'
+
+      - name: Install dependencies via vcpkg
+        run: |
+          vcpkg install libpng:x64-windows libxml2:x64-windows libzip:x64-windows zlib:x64-windows
+
+      - name: Configure CMake
+        shell: pwsh
+        run: |
+          cmake -B build -G Ninja `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_TARGET_TRIPLET="x64-windows" `
+            -DBUILD_TESTING=OFF
+
+      - name: Build Kreart
+        run: |
+          cmake --build build --config Release --target kreart
+
+      - name: Deploy with windeployqt
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist
+          Copy-Item build/src/kreart.exe dist/
+          Get-ChildItem -Path "$env:VCPKG_INSTALLATION_ROOT/installed/x64-windows/bin/*.dll" | Copy-Item -Destination dist/
+          windeployqt --release --compiler-runtime --no-translations dist/kreart.exe
+          Compress-Archive -Path dist/* -DestinationPath kreart-windows-x86_64.zip
+
+      - name: Upload Windows Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kreart-windows-x86_64
+          path: kreart-windows-x86_64.zip

@@ -1,0 +1,8 @@
+<Preset name="Plain_Test" paintopid="paintbrush">
+ <param name="CompositeOp" type="string"><![CDATA[normal]]></param>
+ <param name="FlowValue" type="string"><![CDATA[1]]></param>
+ <param name="OpacityValue" type="string"><![CDATA[1]]></param>
+ <param name="PressureSize" type="string"><![CDATA[true]]></param>
+ <param name="Unknown/FutureField" type="string"><![CDATA[kept]]></param>
+ <param name="brush_definition" type="string"><![CDATA[<Brush type="auto_brush" spacing="0.2" useAutoSpacing="1" autoSpacingCoeff="0.8"><MaskGenerator type="circle" diameter="12" hfade="1" vfade="1" ratio="1" spikes="2" antialiasEdges="1"/></Brush>]]></param>
+</Preset>

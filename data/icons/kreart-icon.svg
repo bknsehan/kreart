@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 800"
+   width="100%"
+   height="100%"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="kreart-icon.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.43487068"
+     inkscape:cx="164.4167"
+     inkscape:cy="347.22967"
+     inkscape:window-width="1366"
+     inkscape:window-height="699"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     fill="currentColor"
+     fill-rule="evenodd"
+     d="m 400,185 -65,20 -115,44 13,6 -8,20 175,90 175,-90 -8,-20 13,-6 -115,-44 z M 245,298 368,361 363.52215,392.34493 356,445 267,391 Z m 41.5,55.5 c 0,10.21727 8.28273,18.49999 18.5,18.49999 10.21727,0 18.5,-8.28272 18.5,-18.49999 0,-10.21727 -8.28273,-18.49999 -18.5,-18.49999 -10.21727,0 -18.5,8.28272 -18.5,18.49999 z M 555,298 l -123,63 12,84 89,-54 z m -78.5,55.5 c 0,10.21727 8.28273,18.49999 18.5,18.49999 10.21727,0 18.5,-8.28272 18.5,-18.49999 0,-10.21727 -8.28273,-18.49999 -18.5,-18.49999 -10.21727,0 -18.5,8.28272 -18.5,18.49999 z M 210,295 l -50,75 58,75 62,110 45,65 5,-60 -60,-75 15,-50 -50,-60 z m 380,0 50,75 -58,75 -62,110 -45,65 -5,-60 60,-75 -15,-50 50,-60 z m -194,85 -24,12 -18,73 -16,65 20,75 18,55 20,55 V 485 l -12,-20 12,-20 z m 8,0 24,12 18,73 16,65 -20,75 -18,55 -20,55 V 485 l 12,-20 -12,-20 z"
+     id="path1"
+     sodipodi:nodetypes="cccccccccccccccccssssscccccssssscccccccccccccccccccccccccccccccccccccccccc" />
+</svg>

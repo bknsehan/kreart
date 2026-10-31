@@ -1,0 +1,103 @@
+add_library(kreart-ui STATIC
+    include/kreart/ui/android_window.h
+    include/kreart/ui/app_settings.h
+    include/kreart/ui/canvas.h
+    include/kreart/ui/color_history.h
+    include/kreart/ui/color_picker.h
+    include/kreart/ui/desktop_theme.h
+    include/kreart/ui/filter_dialogs.h
+    include/kreart/ui/gallery_view.h
+    include/kreart/ui/geometry_dialogs.h
+    include/kreart/ui/grid_dialog.h
+    include/kreart/ui/icon_helper.h
+    include/kreart/ui/layer_panel.h
+    include/kreart/ui/main_window.h
+    include/kreart/ui/mobile_editor_view.h
+    include/kreart/ui/mobile/mobile_theme.h
+    include/kreart/ui/mobile/mobile_sheet.h
+    include/kreart/ui/mobile/pill_button.h
+    include/kreart/ui/mobile/mobile_hud.h
+    include/kreart/ui/mobile/mobile_canvas.h
+    include/kreart/mobile/android_utils.h
+    include/kreart/ui/mobile/editor_context.h
+    include/kreart/ui/mobile/mobile_color_picker.h
+    include/kreart/ui/mobile/quick_wheel.h
+    include/kreart/ui/mobile/sheet_builders.h
+    include/kreart/ui/mobile/sheets.h
+    include/kreart/ui/mobile/mobile_gallery.h
+    include/kreart/ui/preferences_dialog.h
+    include/kreart/ui/pressure_curve.h
+    include/kreart/ui/project_gallery_window.h
+    include/kreart/ui/quick_menu.h
+    include/kreart/ui/stroke_preview_cache.h
+    include/kreart/ui/shortcuts.h
+    include/kreart/ui/shortcut_dialog.h
+    include/kreart/ui/timelapse_dialog.h
+    src/android_window.cpp
+    src/app_settings.cpp
+    src/canvas.cpp
+    src/color_history.cpp
+    src/color_picker.cpp
+    src/desktop_theme.cpp
+    src/filter_dialogs.cpp
+    src/gallery_view.cpp
+    src/geometry_dialogs.cpp
+    src/grid_dialog.cpp
+    src/icon_helper.cpp
+    src/main_window.cpp
+    src/layer_panel.cpp
+    src/mobile_editor_view.cpp
+    src/mobile/mobile_theme.cpp
+    src/mobile/mobile_sheet.cpp
+    src/mobile/pill_button.cpp
+    src/mobile/mobile_hud.cpp
+    src/mobile/mobile_canvas.cpp
+    src/mobile/android_utils.cpp
+    src/mobile/mobile_color_picker.cpp
+    src/mobile/quick_wheel.cpp
+    src/mobile/sheet_brush.cpp
+    src/mobile/sheet_color.cpp
+    src/mobile/sheet_document.cpp
+    src/mobile/sheet_filter.cpp
+    src/mobile/sheet_hub.cpp
+    src/mobile/sheet_image.cpp
+    src/mobile/sheet_layer.cpp
+    src/mobile/sheet_selection.cpp
+    src/mobile/sheet_settings.cpp
+    src/mobile/sheet_tool.cpp
+    src/mobile/sheet_view.cpp
+    src/mobile/sheets.cpp
+    src/mobile/mobile_gallery.cpp
+    src/preferences_dialog.cpp
+    src/pressure_curve.cpp
+    src/quick_menu.cpp
+    src/project_gallery_window.cpp
+    src/stroke_preview_cache.cpp
+    src/shortcuts.cpp
+    src/shortcut_dialog.cpp
+    src/timelapse_dialog.cpp
+    ${CMAKE_SOURCE_DIR}/data/kreart.qrc
+)
+
+target_include_directories(kreart-ui PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+target_link_libraries(kreart-ui PUBLIC
+    kreart-core
+    kreart-brush
+    kreart-resources
+    kreart-render
+    kreart-io
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+    Qt6::OpenGLWidgets
+    Qt6::Svg
+)
+
+# Android file pickers need QtAndroidPrivate::startActivity.
+if(ANDROID)
+    target_link_libraries(kreart-ui PRIVATE Qt6::CorePrivate)
+endif()

@@ -1,0 +1,6 @@
+add_subdirectory(core)
+add_subdirectory(brush)
+add_subdirectory(resources)
+add_subdirectory(io)
+add_subdirectory(render)
+add_subdirectory(ui)

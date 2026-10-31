@@ -1,0 +1,26 @@
+# Build trees
+build/
+build-*/
+build_*/
+cmake-build-*/
+out/
+
+# Editor & IDE state
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Journal and recovery files
+*.kra.wal
+.*.kra.wal
+~*.kra
+*.tmp
+*.thumb.png
+
+# Test artifacts
+test_*.kra
+test_*.wal
+test_*.mp4
