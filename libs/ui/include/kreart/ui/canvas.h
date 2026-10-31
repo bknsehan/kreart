@@ -239,6 +239,7 @@ protected:
   void initializeGL() override;
   void resizeGL(int w, int h) override;
   void paintGL() override;
+  void paintEvent(QPaintEvent *event) override;
   bool event(QEvent *event) override;
   void tabletEvent(QTabletEvent *event) override;
   void mousePressEvent(QMouseEvent *event) override;
@@ -250,6 +251,7 @@ protected:
   void leaveEvent(QEvent *event) override;
 
 private:
+  void paint_cpu();
   void handleTouchEvent(QTouchEvent *event);
   struct InputSample {
     double pressure = 1.0;

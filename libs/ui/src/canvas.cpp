@@ -903,6 +903,57 @@ void Canvas::update_move_tool_cursor(double wx, double wy) {
   setCursor(Qt::ArrowCursor);
 }
 
+void Canvas::paintEvent(QPaintEvent *event) {
+  if (!context() || !context()->isValid() || !gl_enabled_) {
+    paint_cpu();
+    return;
+  }
+  QOpenGLWidget::paintEvent(event);
+}
+
+void Canvas::paint_cpu() {
+  update_transform(width(), height());
+  framebuffer_.sync(document_.composite_image());
+  QPainter p(this);
+  if (!p.isActive()) return;
+
+  QImage img(reinterpret_cast<const uchar *>(framebuffer_.data()),
+             framebuffer_.width(), framebuffer_.height(), framebuffer_.stride(),
+             QImage::Format_ARGB32_Premultiplied);
+  p.fillRect(rect(), is_dark_theme_ ? QColor(20, 21, 24) : QColor(226, 228, 232));
+  p.save();
+  p.translate(pivot_x_, pivot_y_);
+  p.rotate(rotation_degrees());
+  p.scale(mirror_horizontal_ ? -view_scale_ : view_scale_,
+          mirror_vertical_ ? -view_scale_ : view_scale_);
+  p.translate(-document_.width() * 0.5, -document_.height() * 0.5);
+
+  const auto &app_settings = AppSettings::instance();
+  const auto eff_mode = app_settings.effective_transparency_mode(is_dark_theme_);
+  const QColor solid_qc = app_settings.transparency_solid_color();
+  if (eff_mode == TransparencyMode::SOLID_COLOR) {
+    p.fillRect(0, 0, document_.width(), document_.height(), solid_qc);
+  } else {
+    const int ch_sz = 12;
+    const QColor c1 = (eff_mode == TransparencyMode::DARK_CHECKERBOARD)
+                          ? QColor(56, 59, 66)
+                          : QColor(250, 250, 252);
+    const QColor c2 = (eff_mode == TransparencyMode::DARK_CHECKERBOARD)
+                          ? QColor(41, 43, 48)
+                          : QColor(224, 227, 232);
+    for (int y = 0; y < document_.height(); y += ch_sz) {
+      for (int x = 0; x < document_.width(); x += ch_sz) {
+        const bool alt = ((x / ch_sz) + (y / ch_sz)) % 2 == 0;
+        p.fillRect(x, y, ch_sz, ch_sz, alt ? c1 : c2);
+      }
+    }
+  }
+  p.drawImage(0, 0, img);
+  p.restore();
+
+  draw_overlays(p);
+}
+
 void Canvas::paintGL() {
   update_transform(width(), height());
 
