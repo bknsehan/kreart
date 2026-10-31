@@ -1,5 +1,6 @@
 #include "kreart/ui/shortcuts.h"
 #include "kreart/ui/shortcut_dialog.h"
+#include <numbers>
 #include <QTableWidget>
 #include <QApplication>
 #include <QTimer>

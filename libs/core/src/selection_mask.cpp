@@ -3,6 +3,7 @@
 #include "kreart/core/tiled_image.h"
 #include <algorithm>
 #include <cmath>
+#include <numbers>
 
 namespace {
 

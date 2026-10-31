@@ -157,7 +157,7 @@ void TiledImage::erase_pixel(int x, int y, std::uint8_t amount) {
   }
 
   TilePtr &tile = found->second;
-  if (!tile.unique()) {
+  if (tile.use_count() > 1) {
     tile = std::make_shared<Tile>(*tile);
   }
 
@@ -479,7 +479,7 @@ TilePtr &TiledImage::writable_tile(int tile_x, int tile_y) {
   TilePtr &tile = tiles_[key];
   if (!tile) {
     tile = std::make_shared<Tile>();
-  } else if (!tile.unique()) {
+  } else if (tile.use_count() > 1) {
     tile = std::make_shared<Tile>(*tile);
   }
   return tile;

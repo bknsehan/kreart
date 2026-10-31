@@ -10,6 +10,7 @@
 #include "kreart/ui/grid_dialog.h"
 #include "kreart/ui/gallery_view.h"
 
+#include <numbers>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QFileDialog>

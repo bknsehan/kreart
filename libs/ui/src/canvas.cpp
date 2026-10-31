@@ -313,6 +313,10 @@ void Canvas::set_rotation(double radians) {
   }
 }
 
+double Canvas::rotation_degrees() const {
+  return view_rotation_ * 180.0 / std::numbers::pi;
+}
+
 void Canvas::rotate_by(double delta_radians) {
   set_rotation(view_rotation_ + delta_radians);
 }

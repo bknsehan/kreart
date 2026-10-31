@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <numbers>
 #include <vector>
 #include <utility>
 
@@ -149,7 +148,7 @@ public:
   void pan_by(double dx, double dy);
   void set_rotation(double radians);
   double rotation() const { return view_rotation_; }
-  double rotation_degrees() const { return view_rotation_ * 180.0 / std::numbers::pi; }
+  double rotation_degrees() const;
   void rotate_by(double delta_radians);
   void reset_rotation();
 
